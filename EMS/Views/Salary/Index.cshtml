@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h4 class="m-4">Salary Calculator</h4>
+
+<div class="card mb-4 m-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Salary Calcultor
+    </div>
+    <div class="card-body">
+        <label>Enter Basic Salary</label>
+        <input id="sal" type="number" class="dataTable-input" placeholder="Enter Salary..."/>
+        <button class="btn btn-success mt-2" onclick="cal()">Calculate</button>
+        
+        <table class="table" id="alw" style="display: none" class="mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">Basic Salary</th>
+                    <th scope="col">TA</th>
+                    <th scope="col">DA</th>
+                    <th scope="col">HRA</th>
+                    <th scope="col">Gross Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th id="basic"></th>
+                    <td id="ta"></td>
+                    <td id="da"></td>
+                    <td id="hra"></td>
+                    <td id="gs"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function cal() {
+        var sal = document.getElementById("sal").value;
+        document.getElementById("basic").innerHTML = sal;
+        document.getElementById("ta").innerHTML = (sal * 10) / 100;
+        document.getElementById("da").innerHTML = (sal * 5) / 100;
+        document.getElementById("hra").innerHTML = (sal * 12) / 100;
+        document.getElementById("gs").innerHTML =  (sal * 127) / 100;
+        document.getElementById("alw").style.display = "block";
+    }
+</script>
+
+
+

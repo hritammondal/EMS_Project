@@ -1,0 +1,64 @@
+﻿@model IEnumerable<EMS.Models.Department>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Department List</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active">Department List</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            @Html.ActionLink("Add Department", "Create", new { htmlAttributes = new { @class = "pull-right" } })
+
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Department Name</th>
+                        <th>Department Location</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Department Name</th>
+                        <th>Department Location</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class='clickable-row' data-href=@Url.Action("Details", new { id = item.DeptID })>
+                            <td>@Html.DisplayFor(modelItem => item.DeptName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.DeptLocation)</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Delete", new { id = item.DeptID })"><i class="fas fa-trash-alt" style="color:red"></i></a>
+                            </td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Edit", new { id = item.DeptID })"><i class="fas fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    jQuery(document).ready(function ($) {
+        $('*[data-href]').on('click', function () {
+            window.location = $(this).data("href");
+        });
+    });
+</script>
