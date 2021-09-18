@@ -3,93 +3,49 @@
 @{
     ViewBag.Title = "Index";
 }
-<div class="container-fluid px-4">
-    <h1 class="mt-4">Employee List</h1>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active">Employee List</li>
-    </ol>
-    <div class="card mb-4">
-        <div class="card-header">
-            <i class="fas fa-table me-1"></i>
-            @Html.ActionLink("Add Employee", "Create", new { htmlAttributes = new { @class = "pull-right" } })
 
-        </div>
-        <div class="card-body">
-            <table id="datatablesSimple">
-                <thead>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.FirstName)</th>
-                        <th>@Html.DisplayNameFor(model => model.LastName)</th>
-                        <th>@Html.DisplayNameFor(model => model.PhoneNo)</th>
-                        <th>@Html.DisplayNameFor(model => model.Email)</th>
-                        <th>@Html.DisplayNameFor(model => model.AddressLine)</th>
-                        <th>@Html.DisplayNameFor(model => model.City)</th>
-                        <th>@Html.DisplayNameFor(model => model.DOJ)</th>
-                        <th>@Html.DisplayNameFor(model => model.DOB)</th>
-                        <th>@Html.DisplayNameFor(model => model.Gender)</th>
-                        <th>@Html.DisplayNameFor(model => model.Salary)</th>
-                        <th>@Html.DisplayNameFor(model => model.Bonus)</th>
-                        <th>@Html.DisplayNameFor(model => model.Department.DeptName)</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.FirstName)</th>
-                        <th>@Html.DisplayNameFor(model => model.LastName)</th>
-                        <th>@Html.DisplayNameFor(model => model.PhoneNo)</th>
-                        <th>@Html.DisplayNameFor(model => model.Email)</th>
-                        <th>@Html.DisplayNameFor(model => model.AddressLine)</th>
-                        <th>@Html.DisplayNameFor(model => model.City)</th>
-                        <th>@Html.DisplayNameFor(model => model.DOJ)</th>
-                        <th>@Html.DisplayNameFor(model => model.DOB)</th>
-                        <th>@Html.DisplayNameFor(model => model.Gender)</th>
-                        <th>@Html.DisplayNameFor(model => model.Salary)</th>
-                        <th>@Html.DisplayNameFor(model => model.Bonus)</th>
-                        <th>@Html.DisplayNameFor(model => model.Department.DeptName)</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                    <tr class='clickable-row' data-href=@Url.Action("Details", new { id = item.DeptID })>
-                        <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.LastName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.PhoneNo)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                        <td>@Html.DisplayFor(modelItem => item.AddressLine)</td>
-                        <td>@Html.DisplayFor(modelItem => item.City)</td>
-                        <td>@Html.DisplayFor(modelItem => item.DOJ)</td>
-                        <td>@Html.DisplayFor(modelItem => item.DOB)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Gender)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Salary)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Bonus)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Department.DeptName))</td>
-                        <td class="text-center">
-                            <a href="@Url.Action("Delete", new { id = item.DeptID })"><i class="fas fa-trash-alt" style="color:red"></i></a>
-                        </td>
-                        <td class="text-center">
-                            <a href="@Url.Action("Edit", new { id = item.DeptID })"><i class="fas fa-edit"></i></a>
-                        </td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+<h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script>
-    jQuery(document).ready(function ($) {
-        $('*[data-href]').on('click', function () {
-            window.location = $(this).data("href");
-        });
-    });
-</script>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EmpID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EmpID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EmpID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "EmployeeSalary";
+}
+
+<h2>EmployeeSalary</h2>
+
+@using (Html.BeginForm("EmployeeSalDet", "Salary", FormMethod.Get))
+{
+
+    <b>Search Option: </b>
+    <br />
+
+    <text>Enter Employee ID</text>
+    <form>
+        <div class="input-group">
+            <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" name="id" id="id"/>
+            <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </form>
+}
+

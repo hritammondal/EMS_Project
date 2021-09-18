@@ -11,7 +11,6 @@ using EMS.Models;
 
 namespace EMS.Controllers
 {
-    
     public class EmployeesController : Controller
     {
         private EMSEntities1 db = new EMSEntities1();
@@ -25,7 +24,7 @@ namespace EMS.Controllers
         }
 
         // GET: Employees/Details/5
-        [Authorize(Roles = "Admin,Employee")]
+        [Authorize]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)

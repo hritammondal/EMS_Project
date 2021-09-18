@@ -1,0 +1,49 @@
+﻿@model IEnumerable<EMS.Models.Employee>
+
+@{
+    ViewBag.Title = "EmployeeSalDet";
+}
+
+<h2>EmployeeSalDet</h2>
+
+
+<table class="table m-4">
+    <tr>
+        <th>
+            Basic Salary
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th id="basic">@Html.DisplayFor(modelItem => item.Salary)</th>
+        </tr>
+
+    }
+
+</table>
+<p class="m-4">
+    <button class="btn btn-success mt-2" onclick="cal()">Salary breakup</button>
+</p>
+@foreach (var item in Model)
+{
+    <div id="alw" style="display: none" class="m-4">
+        <b>TA</b><p id="ta"></p>
+        <b>DA</b><p id="da"></p>
+        <b>HRA</b><p id="hra"></p>
+        <b>Gross Salary</b><p id="gs"></p>
+    </div>
+}
+
+<script>
+    function cal() {
+        var sal = document.getElementById("basic").innerHTML;
+        document.getElementById("basic").innerHTML = sal;
+        document.getElementById("ta").innerHTML = (sal * 10) / 100;
+        document.getElementById("da").innerHTML = (sal * 5) / 100;
+        document.getElementById("hra").innerHTML = (sal * 12) / 100;
+        document.getElementById("gs").innerHTML = (sal * 127) / 100;
+        document.getElementById("alw").style.display = "block";
+    }
+</script>
